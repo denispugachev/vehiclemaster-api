@@ -19,6 +19,8 @@ class BaseController extends Controller
             'application/json' => Response::FORMAT_JSON,
         ];
 
+        unset($behaviors['rateLimiter']);
+
         return $behaviors;
     }
 }
