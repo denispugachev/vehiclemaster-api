@@ -13,10 +13,10 @@ return [
     'bootstrap' => ['log'],
     'modules' => [
         'api' => [
-            'class' => 'common\modules\api\Module',
+            'class' => \common\modules\api\Module::class,
             'modules' => [
                 'v1' => [
-                    'class' => 'common\modules\api\v1\Module',
+                    'class' => \common\modules\api\v1\Module::class,
                 ],
             ],
         ],
@@ -25,6 +25,9 @@ return [
         'response' => [
             'format' => yii\web\Response::FORMAT_JSON,
             'charset' => 'UTF-8',
+        ],
+        'user' => [
+            'identityClass' => \common\modules\api\v1\models\User::class,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -36,9 +39,9 @@ return [
             ],
         ],
         'urlManager' => [
-            'enablePrettyUrl'     => true,
+            'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
-            'showScriptName'      => false,
+            'showScriptName' => false,
             'rules' => [
                 'GET api/v1/captcha' => 'api/v1/captcha',
                 'GET api/v1/pledge/<vin>' => 'api/v1/pledge/view',

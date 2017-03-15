@@ -2,6 +2,7 @@
 
 namespace common\modules\api\v1\controllers;
 
+use common\modules\api\v1\auth\HttpUuidAuth;
 use yii\rest\Controller;
 use yii\web\Response;
 
@@ -17,6 +18,10 @@ class BaseController extends Controller
 
         $behaviors['contentNegotiator']['formats'] = [
             'application/json' => Response::FORMAT_JSON,
+        ];
+
+        $behaviors['authenticator']['authMethods'] = [
+            HttpUuidAuth::className(),
         ];
 
         unset($behaviors['rateLimiter']);
