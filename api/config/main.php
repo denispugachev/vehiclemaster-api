@@ -11,19 +11,20 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'api\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'api' => [
+            'class' => 'common\modules\api\Module',
+            'modules' => [
+                'v1' => [
+                    'class' => 'common\modules\api\v1\Module',
+                ],
+            ],
+        ],
+    ],
     'components' => [
-        'request' => [
-            'csrfParam' => '_csrf-api',
-        ],
-        'user' => [
-            'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-api', 'httpOnly' => true],
-        ],
-        'session' => [
-            // this is the name of the session cookie used for login on the api
-            'name' => 'advanced-api',
+        'response' => [
+            'format' => yii\web\Response::FORMAT_JSON,
+            'charset' => 'UTF-8',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -34,17 +35,15 @@ return [
                 ],
             ],
         ],
-        'errorHandler' => [
-            'errorAction' => 'site/error',
-        ],
-        /*
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
+            'enablePrettyUrl'     => true,
+            'enableStrictParsing' => true,
+            'showScriptName'      => false,
             'rules' => [
+                'GET api/v1/captcha' => 'api/v1/captcha',
+                'GET api/v1/pledge/<vin>' => 'api/v1/pledge/view',
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
