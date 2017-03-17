@@ -12,10 +12,7 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'console\controllers',
     'controllerMap' => [
-        'fixture' => [
-            'class' => 'yii\console\controllers\FixtureController',
-            'namespace' => 'common\fixtures',
-          ],
+        'mongodb-migrate' => \yii\mongodb\console\controllers\MigrateController::class,
     ],
     'components' => [
         'log' => [
