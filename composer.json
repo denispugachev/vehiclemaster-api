@@ -3,7 +3,8 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.0",
-        "yiisoft/yii2": "2.0.11.2"
+        "yiisoft/yii2": "2.0.11.2",
+        "yiisoft/yii2-mongodb": "2.1.0"
     },
     "config": {
         "process-timeout": 1800

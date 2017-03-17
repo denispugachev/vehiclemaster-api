@@ -26,7 +26,13 @@ apt-get update
 apt-get upgrade -y
 
 info "Install additional software"
-apt-get install -y php7.0-curl php7.0-cli php7.0-intl php7.0-gd php7.0-fpm php7.0-mbstring php7.0-xml unzip nginx
+apt-get install -y php7.0-curl php7.0-cli php7.0-intl php7.0-gd php7.0-fpm php7.0-mbstring php7.0-xml php7.0-dev pkg-config unzip nginx mongodb
+pecl install mongodb
+
+touch /etc/php/7.0/mods-available/mongodb.ini
+echo extension=mongodb.so > /etc/php/7.0/mods-available/mongodb.ini
+ln -s /etc/php/7.0/mods-available/mongodb.ini /etc/php/7.0/fpm/conf.d/
+ln -s /etc/php/7.0/mods-available/mongodb.ini /etc/php/7.0/cli/conf.d/
 
 info "Configure PHP-FPM"
 sed -i 's/user = www-data/user = vagrant/g' /etc/php/7.0/fpm/pool.d/www.conf
